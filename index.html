@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="src/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <script src="src/script.js"></script>
   </head>
   <body class="p-0 m-0 mt-10 flex flex-col">
     <h1>Mouse Bounding</h1>
@@ -33,7 +32,7 @@
     </div>
     
     <button id="reset-config" class="hidden absolute top-5 right-5 px-5 py-2 border-2 border-rose-700 bg-rose-200 hover:bg-rose-700 hover:text-white rounded-full">Reset Configs</button>
-    
-    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script src="src/script.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="document.body.dispatchEvent(new Event(`gapi-loaded`))"></script>
   </body>
 </html>
