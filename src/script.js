@@ -23,6 +23,19 @@
       showElement(configFormEle)
     }
   }
+  
+  /**
+  * Listener for gapi loaded
+  */
+  document.body.addEventListener(`gapi-loaded`, () => {
+    if (document.readyState !== `loading`) {
+      gapiLoaded()
+    } else {
+      document.addEventListener(`readystatechange`, () => {
+        gapiLoaded()
+      })
+    }
+  })
 
   /**
   * Callback after the API client is loaded. Loads the discovery doc to initialize the API.
@@ -96,5 +109,4 @@
     ele.classList.add(`hidden`)
   }
   
-  return gapiLoaded
 })()
