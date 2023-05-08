@@ -44,7 +44,7 @@
     await gapi.client.init({
       apiKey: apiKey,
       discoveryDocs: [DISCOVERY_DOC],
-    });
+    })
     showElement(resetConfigBtn)
     doFirstFetch()
   }
@@ -55,7 +55,7 @@
     setApiKey(configForm.querySelector(`#${API_KEY_NAME}`).value)
     setSheetId(configForm.querySelector(`#${SHEET_ID_NAME}`).value)
     hideElement(configFormEle)
-    gapi.load('client', initializeGapiClient);
+    gapi.load('client', initializeGapiClient)
   })
   
   resetConfigBtn.addEventListener(`click`, (e)=>{
@@ -91,7 +91,7 @@
     
     const range = response.result
     if (!range || !range.values || range.values.length == 0) {
-      console.warn('No values found.')
+      console.warn(`No values found.`)
       return
     }
     
