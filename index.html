@@ -2,8 +2,19 @@
 <html>
   <head>
     <title>Mouse Bounding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="src/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
     <h1>Mouse Bounding</h1>
+    <div id="game-board-wrapper">
+      <div id="game-board">
+        <!-- injected via script.js -->
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
   </body>
 </html>
