@@ -12,18 +12,7 @@
   <body class="p-0 m-0 mt-10 flex flex-col">
     <h1 class="flex self-center">Mouse Bounding</h1>
     
-    <!-- Get Level Data -->
-    <form id="config-form" class="hidden flex justify-center self-center border border-gray-200 rounded-lg m-10 p-10 max-w-lg">
-      <fieldset class="flex flex-col items-center gap-5">
-        <label class="min-w-full" title="From the Google Cloud console, see here -- https://developers.google.com/sheets/api/quickstart/js">API Key:
-          <input class="border border-gray-400 rounded-full px-3 min-w-full" type="text" id="apikey" name="apikey" required>
-        </label>
-        <label class="min-w-full" title="Example: https://docs.google.com/spreadsheets/d/<spreadsheet_id_here>/edit#gid=0">Sheet ID:
-          <input class="border border-gray-400 rounded-full px-3 min-w-full" type="text" id="sheetid" name="sheetid" required>
-        </label>
-        <button class="min-w-full px-5 py-2 mt-5 border-2 border-sky-700 bg-sky-200 hover:bg-sky-700 hover:text-white rounded-full">Submit</button>
-      </fieldset>
-    </form>
+    <div data-include="src/html/sheet-form.html"></div>
     
     <div id="game-board-wrapper" class="hidden">
       <div id="game-board">
@@ -31,7 +20,6 @@
       </div>
     </div>
     
-    <button id="reset-config" class="hidden absolute top-5 right-5 px-5 py-2 border-2 border-rose-700 bg-rose-200 hover:bg-rose-700 hover:text-white rounded-full">Reset Configs</button>
     <script src="src/js/main.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="document.body.dispatchEvent(new Event(`gapi-loaded`));window.gapiLoaded=true"></script>
   </body>
