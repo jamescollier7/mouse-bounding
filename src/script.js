@@ -9,8 +9,6 @@
   
   const configFormEle = document.getElementById(`config-form`)
   const resetConfigBtn = document.getElementById(`reset-config`)
-  const resultsTableEle = document.getElementById(`results-table`)
-  const addRecordFormEle = document.getElementById(`add-record-form`)
   
   // Discovery doc URL for APIs used by the quickstart
   const DISCOVERY_DOC = `https://sheets.googleapis.com/$discovery/rest?version=v4`
@@ -35,7 +33,6 @@
       discoveryDocs: [DISCOVERY_DOC],
     });
     showElement(resetConfigBtn)
-    showElement(addRecordFormEle)
     doFirstFetch()
   }
 
@@ -52,16 +49,7 @@
     localStorage.clear()
     showElement(configFormEle)
     hideElement(resetConfigBtn)
-    hideElement(addRecordFormEle)
     window.location.reload()
-  })
-  
-  addRecordFormEle.addEventListener(`submit`, (e)=>{
-    e.preventDefault()
-    const addRowForm = e.currentTarget
-    const addRowInput = addRowForm.querySelector(`#addrecord`)
-    const cells = addRowInput?.value?.split(`|`)
-    writeDataToSpreadsheet(cells)
   })
 
   function setSheetId(id) {
@@ -97,40 +85,8 @@
     return range
   }
   
-  async function writeDataToSpreadsheet(cells) {
-    var params = {
-      spreadsheetId: sheetId,
-      range: 'A1:D1',
-      valueInputOption: 'RAW',
-      insertDataOption: 'INSERT_ROWS',
-    }
-
-    let result
-    var request = gapi.client.sheets.spreadsheets.values.append(params, cells)
-      .then(function(response) {
-        result = response.result
-      }, function(reason) {
-        console.error('error: ' + reason.result.error.message)
-      })
-
-    return result
-  }
-  
   function doFirstFetch() {
     fetchDataFromTheSpreadsheet(`A1:D5`).then(data => writeOutTable(data))
-  }
-  
-  function writeOutTable(data) {
-    resultsTableEle.innerHTML = ``
-    
-    data?.values?.forEach((row)=>{
-      let rowdata = `<tr class="border border-gray">`
-      row.forEach((cell)=>{
-        rowdata += `<td class="border border-gray text-center">${cell}</td>`
-      })
-      rowdata += `</tr>`
-      resultsTableEle.innerHTML += rowdata
-    })
   }
   
   function showElement(ele) {
