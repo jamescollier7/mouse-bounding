@@ -77,8 +77,22 @@
     return localStorage.getItem(item)
   }
   
-  async function fetchDataFromTheSpreadsheet(cellRef) {
+  async function fetchAllSpreadsheetInfo() {
     let response
+    try {
+      response = await gapi.client.sheets.spreadsheets.get({
+        spreadsheetId: sheetId,
+      })
+    } catch (err) {
+      console.error(err)
+      return
+    }
+    
+    return response
+  }
+  
+  async function fetchSpreadsheetData(colCount, rowCount) {
+     let response
     try {
       response = await gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: sheetId,
@@ -99,7 +113,12 @@
   }
   
   function doFirstFetch() {
-    fetchDataFromTheSpreadsheet(`A1:D5`).then(data => writeOutTable(data))
+    fetchAllSpreadsheetInfo()
+      .then(data => writeOutTable(data))
+  }
+  
+  function numToColLetter(num) {
+    
   }
   
   function showElement(ele) {
