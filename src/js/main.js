@@ -1,5 +1,5 @@
 (()=>{
-  loadScript(`src/js/test.js`)
+  loadScript(`src/js/sheets.js`)
   
   function loadScript(url) {
     var script = document.createElement("script")
