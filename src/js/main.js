@@ -1,4 +1,5 @@
 ;(() => {
+  loadScript(`src/js/utilities.js`)
   loadScript(`src/js/sheets.js`)
   loadScript(`src/js/html-include.js`)
   loadScript(`src/js/game.js`)
