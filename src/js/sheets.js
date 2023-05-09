@@ -124,4 +124,12 @@
   function hideElement(ele) {
     ele.classList.add(`hidden`)
   }
+
+  if (window.srchtmlsheetform) {
+    init()
+  } else {
+    document.body.addEventListener(`srchtmlsheetform`, () => {
+      init()
+    })
+  }
 })()
