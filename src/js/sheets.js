@@ -101,13 +101,6 @@
     return String.fromCharCode(num + 64)
   }
 
-  function showElement(ele) {
-    ele.classList.remove(`hidden`)
-  }
-  function hideElement(ele) {
-    ele.classList.add(`hidden`)
-  }
-
   if (window.srchtmlsheetform) {
     init()
   } else {
