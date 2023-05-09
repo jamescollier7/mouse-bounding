@@ -1,5 +1,5 @@
-(()=>{
-  'use strict';
-  
+;(() => {
+  "use strict"
+
   console.log(`Wanna play a game? :)`)
 })()
