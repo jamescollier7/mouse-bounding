@@ -25,19 +25,6 @@
   }
 
   /**
-   * Listener for gapi loaded
-   */
-  document.body.addEventListener(`gapi-loaded`, () => {
-    if (document.readyState !== `loading`) {
-      gapiLoaded()
-    } else {
-      document.addEventListener(`readystatechange`, () => {
-        gapiLoaded()
-      })
-    }
-  })
-
-  /**
    * Callback after the API client is loaded. Loads the discovery doc to initialize the API.
    */
   async function initializeGapiClient() {
@@ -48,22 +35,6 @@
     showElement(resetConfigBtn)
     doFirstFetch()
   }
-
-  configFormEle.addEventListener(`submit`, (e) => {
-    e.preventDefault()
-    const configForm = e.currentTarget
-    setApiKey(configForm.querySelector(`#${API_KEY_NAME}`).value)
-    setSheetId(configForm.querySelector(`#${SHEET_ID_NAME}`).value)
-    hideElement(configFormEle)
-    gapi.load("client", initializeGapiClient)
-  })
-
-  resetConfigBtn.addEventListener(`click`, (e) => {
-    localStorage.clear()
-    showElement(configFormEle)
-    hideElement(resetConfigBtn)
-    window.location.reload()
-  })
 
   function setSheetId(id) {
     localStorage.setItem(SHEET_ID_NAME, id)
@@ -142,6 +113,32 @@
   } else {
     document.body.addEventListener(`srchtmlsheetform`, () => {
       init()
+    })
+  }
+
+  function init() {
+    if (window.gapiLoaded) {
+      gapiLoaded()
+    } else {
+      document.body.addEventListener(`gapi-loaded`, () => {
+        gapiLoaded()
+      })
+    }
+
+    configFormEle.addEventListener(`submit`, (e) => {
+      e.preventDefault()
+      const configForm = e.currentTarget
+      setApiKey(configForm.querySelector(`#${API_KEY_NAME}`).value)
+      setSheetId(configForm.querySelector(`#${SHEET_ID_NAME}`).value)
+      hideElement(configFormEle)
+      gapi.load("client", initializeGapiClient)
+    })
+
+    resetConfigBtn.addEventListener(`click`, (e) => {
+      localStorage.clear()
+      showElement(configFormEle)
+      hideElement(resetConfigBtn)
+      window.location.reload()
     })
   }
 })()
