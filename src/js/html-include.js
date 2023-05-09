@@ -45,6 +45,8 @@
     and inject the result into each of the elements in the group.
     
     Cache the responses for this session to prevent duplicate calls
+
+    Fire an event for late processing, and set global window val
   */
   async function processGroupOfIncludes(arrayOfElements, path) {
     let html = sessionStorage.getItem(path)
