@@ -92,11 +92,12 @@
   }
 
   async function fetchSpreadsheetData(colCount, rowCount) {
+    const colLetter = numToColLetter(colCount)
     let response
     try {
       response = await gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: sheetId,
-        range: `Sheet1!${cellRef}`,
+        range: `Sheet1!A1:${colLetter}${rowCount}`,
       })
     } catch (err) {
       console.error(err)
@@ -116,7 +117,18 @@
     fetchAllSpreadsheetInfo().then((data) => writeOutTable(data))
   }
 
-  function numToColLetter(num) {}
+  /*
+   * Convert number to column letter
+   *
+   * 1  --> A
+   * ...
+   * 26 --> Z
+   *
+   * TODO handle cols after Z, need to go to AA and so on
+   */
+  function numToColLetter(num) {
+    return String.fromCharCode(num + 64)
+  }
 
   function showElement(ele) {
     ele.classList.remove(`hidden`)
