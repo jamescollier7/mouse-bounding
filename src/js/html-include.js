@@ -1,11 +1,11 @@
-(()=>{
-  'use strict';
-  
+;(() => {
+  "use strict"
+
   const includeElements = document.querySelectorAll(`[data-include]`)
   const groupedIncludeMap = groupIncludeElementsIntoMap(includeElements)
-  
+
   groupedIncludeMap.forEach(processGroupOfIncludes)
-  
+
   /*
     Reduce an array of dom elements with paths to a Map of paths 
     with an array of those elements -- for example:
@@ -35,11 +35,11 @@
       arrayOfElements.push(includeElement)
 
       accumulatorMap.set(path, arrayOfElements)
-      
+
       return accumulatorMap
     }, new Map())
   }
-  
+
   /*
     Use the path of a group, fetch the data using that path, 
     and inject the result into each of the elements in the group.
@@ -50,12 +50,16 @@
     let html = sessionStorage.getItem(path)
     if (!html) {
       html = await fetchHtml(path)
-      sessionStorage.setItem(path, html);
+      sessionStorage.setItem(path, html)
     }
 
-    arrayOfElements.forEach((includeEle) => includeEle.outerHTML = html)
+    arrayOfElements.forEach((includeEle) => (includeEle.outerHTML = html))
+
+    const eventName = path.replace(/\/|\.(.*)$/g, ``)
+    document.body.dispatchEvent(new Event(eventName))
+    window[eventName] = true
   }
-  
+
   /*
     Fetch the html from a path
   */
