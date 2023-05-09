@@ -3,15 +3,13 @@ html,body {
   padding: 0;
 }
 
-.row {
-
-}
-
 .square {
   height: 50px;
   width: 50px;
   border: 1px solid #ddd;
-  background-image: url("src/favicon.png");
+  background-color: #ff000020;
+  background-image: url('https://jamescollier7.github.io/mouse-bounding/src/favicon.png');
+  background-size: cover;
 }
 
 /* tailwind export */
