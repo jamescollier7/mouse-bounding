@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test 1</title>
+  </head>
+  <body>
+    <div class="board">
+      <div class="square"></div>
+      <div class="square"></div>
+
+      <div class="square"></div> 
+    </div>
+    
+    <script>
+      const levelData = [
+        {
+          pattern: [1,0,0],
+          delay: 1000
+        }, 
+        {
+          pattern: [0,1,0],
+          delay: 1000
+        },
+        {
+          pattern: [0,0,1],
+          delay: 1000
+        },
+        {
+          pattern: [0,1,0],
+          delay: 1000
+        }
+      ]
+      
+      function doNext(index) {
+        setTimeout(()=>{doNext((index+1)%levelData.length, },levelData[index]delay)
+      }
+      levelData[0]
+    </script>
+  </body>
+</html>
